@@ -1,3 +1,5 @@
+import alexPhoto from "@/assets/alex-britto-photo.png";
+
 const About = () => {
   return (
     <section id="about" className="py-32 border-b border-primary/10">
@@ -8,8 +10,8 @@ const About = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-sm translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
             <div className="relative border border-primary/20 rounded-sm overflow-hidden aspect-square">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&auto=format"
-                alt="Alex Britto"
+                src={alexPhoto}
+                alt="Alex Britto - Desenvolvedor Web"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>
