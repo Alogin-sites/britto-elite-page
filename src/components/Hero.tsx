@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ArrowRight } from "lucide-react";
+import HeroBackground3D from "./HeroBackground3D";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-primary/10">
-      {/* Animated Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+      {/* Three.js 3D Background */}
+      <HeroBackground3D />
       
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)] opacity-30" />
+      
+      {/* Floating Particles - kept for additional depth */}
+      <div className="absolute inset-0 overflow-hidden opacity-50">
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
