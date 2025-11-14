@@ -6,7 +6,7 @@ const About = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           {/* Photo */}
-          <div className="relative group">
+          <div className="relative group animate-photo-reveal">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-sm translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
             <div className="relative border border-primary/20 rounded-sm overflow-hidden aspect-square">
               <img
