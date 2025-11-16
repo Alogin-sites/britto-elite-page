@@ -1,4 +1,5 @@
 import { Code2, Sparkles, ShoppingCart, Building2, Palette, Zap } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const services = [
   {
@@ -34,12 +35,14 @@ const services = [
 ];
 
 const Services = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section id="services" className="py-32 border-b border-primary/10">
+    <section id="services" className="py-32 border-b border-primary/10" ref={ref}>
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Header */}
-          <div className="text-center space-y-4 animate-fade-in">
+          <div className={`text-center space-y-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
               Serviços
             </h2>
@@ -56,8 +59,8 @@ const Services = () => {
               return (
                 <div
                   key={index}
-                  className="group border border-primary/20 p-8 hover-invert cursor-pointer"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className={`group border border-primary/20 p-8 hover-invert cursor-pointer transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  style={{ transitionDelay: isVisible ? `${index * 100 + 300}ms` : '0ms' }}
                 >
                   <div className="space-y-4">
                     <div className="w-12 h-12 flex items-center justify-center border border-primary/20 group-hover:border-background transition-colors">

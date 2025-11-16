@@ -1,12 +1,15 @@
 import alexPhoto from "@/assets/alex-britto-photo.png";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const About = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section id="about" className="py-32 border-b border-primary/10">
+    <section id="about" className="py-32 border-b border-primary/10" ref={ref}>
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           {/* Photo */}
-          <div className="relative group animate-photo-reveal">
+          <div className={`relative group transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-sm translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
             <div className="relative border border-primary/20 rounded-sm overflow-hidden aspect-square">
               <img
@@ -18,7 +21,7 @@ const About = () => {
           </div>
 
           {/* Content */}
-          <div className="space-y-6 animate-slide-in">
+          <div className={`space-y-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
             <div className="space-y-4">
               <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
                 Sobre Mim
