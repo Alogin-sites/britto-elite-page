@@ -126,4 +126,42 @@ All colors MUST be HSL.
       filter: blur(0px);
     }
   }
+
+  .animate-icon-reveal {
+    animation: iconReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes iconReveal {
+    0% { 
+      opacity: 0; 
+      transform: scale(0) rotate(-180deg);
+    }
+    100% { 
+      opacity: 1; 
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  .animate-draw-line {
+    animation: drawLine 1.5s ease-out forwards;
+  }
+
+  @keyframes drawLine {
+    from { 
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    to { 
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  .hover-lift {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-12px);
+  }
 }

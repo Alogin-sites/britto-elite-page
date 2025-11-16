@@ -37,7 +37,8 @@ const Process = () => {
           {/* Steps */}
           <div className="relative">
             {/* Connection Line */}
-            <div className="hidden md:block absolute top-16 left-0 right-0 h-px bg-primary/20" />
+            <div className="hidden md:block absolute top-16 left-0 right-0 h-px bg-primary/20 animate-draw-line origin-left" 
+                 style={{ animationDelay: '400ms' }} />
 
             <div className="grid md:grid-cols-3 gap-12">
               {steps.map((step, index) => {
@@ -45,25 +46,30 @@ const Process = () => {
                 return (
                   <div
                     key={index}
-                    className="relative text-center space-y-6 animate-fade-in"
+                    className="relative text-center space-y-6 animate-fade-in hover-lift group"
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
                     {/* Icon Container */}
                     <div className="relative inline-flex">
-                      <div className="absolute inset-0 bg-primary/10 blur-xl" />
-                      <div className="relative w-32 h-32 mx-auto border-2 border-primary bg-background flex items-center justify-center">
-                        <Icon className="w-12 h-12" />
+                      <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/20 transition-all duration-500" />
+                      <div className="relative w-32 h-32 mx-auto border-2 border-primary bg-background flex items-center justify-center group-hover:border-primary/50 transition-all duration-300">
+                        <Icon 
+                          className="w-12 h-12 animate-icon-reveal group-hover:scale-110 transition-transform duration-300" 
+                          style={{ animationDelay: `${index * 200 + 300}ms` }}
+                        />
                       </div>
                     </div>
 
                     {/* Step Number */}
-                    <div className="text-6xl font-bold text-primary/20">
+                    <div className="text-6xl font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
                       0{index + 1}
                     </div>
 
                     {/* Content */}
                     <div className="space-y-3">
-                      <h3 className="text-2xl font-bold">{step.title}</h3>
+                      <h3 className="text-2xl font-bold group-hover:text-primary transition-colors duration-300">
+                        {step.title}
+                      </h3>
                       <p className="text-muted-foreground leading-relaxed">
                         {step.description}
                       </p>
