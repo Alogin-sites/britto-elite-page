@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const projects = [
   {
@@ -42,13 +43,14 @@ const projects = [
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="portfolio" className="py-32 border-b border-primary/10">
+    <section id="portfolio" className="py-32 border-b border-primary/10" ref={ref}>
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Header */}
-          <div className="text-center space-y-4 animate-fade-in">
+          <div className={`text-center space-y-4 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
               Portfólio
             </h2>
@@ -63,9 +65,9 @@ const Portfolio = () => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="group cursor-pointer"
+                className={`group cursor-pointer transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
                 onClick={() => setSelectedProject(project)}
-                style={{ animationDelay: `${index * 100}ms` }}
+                style={{ transitionDelay: isVisible ? `${index * 100 + 300}ms` : '0ms' }}
               >
                 <div className="relative overflow-hidden border border-primary/20 aspect-[4/3] hover:border-primary transition-colors duration-500">
                   <img
