@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import HeroBackground3D from "./HeroBackground3D";
-
 const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-primary/10">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-primary/10">
       {/* Three.js 3D Background */}
       <HeroBackground3D />
       
@@ -13,18 +11,12 @@ const Hero = () => {
       
       {/* Floating Particles - kept for additional depth */}
       <div className="absolute inset-0 overflow-hidden opacity-50">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full animate-float opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
+        {[...Array(20)].map((_, i) => <div key={i} className="absolute w-1 h-1 bg-primary rounded-full animate-float opacity-20" style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 5}s`,
+        animationDuration: `${5 + Math.random() * 10}s`
+      }} />)}
       </div>
 
       {/* Content */}
@@ -43,11 +35,7 @@ const Hero = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-semibold group"
-              asChild
-            >
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-semibold group" asChild>
               <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 h-5 w-5" />
                 Falar no WhatsApp
@@ -55,12 +43,7 @@ const Hero = () => {
               </a>
             </Button>
             
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold"
-              asChild
-            >
+            <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold" asChild>
               <a href="#portfolio">
                 Ver portfólio
               </a>
@@ -75,8 +58,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
