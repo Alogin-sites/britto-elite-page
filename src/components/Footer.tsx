@@ -1,4 +1,4 @@
-import { Github, Linkedin, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -37,7 +37,7 @@ const Footer = () => {
               <h4 className="text-lg font-semibold">Redes Sociais</h4>
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/alex01sander"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border border-primary/20 flex items-center justify-center hover-invert transition-all"
@@ -45,7 +45,7 @@ const Footer = () => {
                   <Github className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/alex-sander-dev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border border-primary/20 flex items-center justify-center hover-invert transition-all"
@@ -53,12 +53,20 @@ const Footer = () => {
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/alx_britt0/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border border-primary/20 flex items-center justify-center hover-invert transition-all"
                 >
                   <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://wa.me/5551992401184"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 border border-primary/20 flex items-center justify-center hover-invert transition-all"
+                >
+                  <MessageCircle className="w-5 h-5" />
                 </a>
               </div>
             </div>

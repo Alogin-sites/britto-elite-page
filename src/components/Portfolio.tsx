@@ -109,7 +109,7 @@ const Portfolio = () => {
                   transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
                 }}
               >
-                <div className="relative overflow-hidden border border-primary/20 aspect-[16/9] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                <div className="relative border border-primary/20 min-h-[500px] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center p-4 overflow-hidden">
                   {/* Corner accents */}
                   <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -122,8 +122,14 @@ const Portfolio = () => {
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
-                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-700"
-                    style={{ imageRendering: "-webkit-optimize-contrast" }}
+                    className="max-w-full max-h-full w-auto h-auto object-contain object-center group-hover:scale-105 transition-all duration-700"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      WebkitBackfaceVisibility: "hidden",
+                      backfaceVisibility: "hidden",
+                      transform: "translateZ(0)",
+                      willChange: "transform",
+                    }}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center gap-4">
@@ -156,11 +162,11 @@ const Portfolio = () => {
       {/* Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-background/98 backdrop-blur-md z-50 flex items-center justify-center p-6 animate-fade-in"
+          className="fixed inset-0 bg-background/98 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6 animate-fade-in overflow-y-auto"
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="relative max-w-5xl w-full border border-primary/30 bg-background p-10 shadow-[0_0_50px_rgba(255,255,255,0.1)]"
+            className="relative max-w-5xl w-full border border-primary/30 bg-background p-4 md:p-10 shadow-[0_0_50px_rgba(255,255,255,0.1)] my-auto max-h-[calc(100vh-2rem)] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Corner decorations */}
@@ -171,30 +177,36 @@ const Portfolio = () => {
 
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 p-2 border border-primary/20 hover:bg-primary/10 hover:border-primary transition-all duration-300 z-10"
+              className="absolute top-4 right-4 md:top-6 md:right-6 p-2 border border-primary/20 hover:bg-primary/10 hover:border-primary transition-all duration-300 z-10"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="space-y-6">
-              <div className="relative overflow-hidden border border-primary/20">
+            <div className="space-y-4 md:space-y-6 overflow-y-auto flex-1 min-h-0">
+              <div className="relative overflow-hidden border border-primary/20 flex items-center justify-center p-4 md:p-6 bg-background/50 min-h-[300px] max-h-[60vh]">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
-                  className="w-full aspect-video object-cover object-center"
-                  style={{ imageRendering: "-webkit-optimize-contrast" }}
+                  className="max-w-full max-h-full w-auto h-auto object-contain object-center"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    WebkitBackfaceVisibility: "hidden",
+                    backfaceVisibility: "hidden",
+                    transform: "translateZ(0)",
+                    willChange: "transform",
+                  }}
                 />
               </div>
 
-              <div className="space-y-6 pt-4">
+              <div className="space-y-4 md:space-y-6 pt-2 md:pt-4 flex-shrink-0">
                 <div className="space-y-3">
                   <div className="inline-block px-4 py-1 border border-primary/30 text-sm tracking-wider">
                     {selectedProject.category.toUpperCase()}
                   </div>
-                  <h3 className="text-4xl font-bold tracking-tight">
+                  <h3 className="text-2xl md:text-4xl font-bold tracking-tight">
                     {selectedProject.title}
                   </h3>
                   <div className="flex items-center gap-2">

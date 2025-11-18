@@ -29,7 +29,7 @@ const CTA = () => {
               className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-8 text-xl font-bold group border-2 border-primary shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] transition-all duration-500"
               asChild
             >
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5551992401184" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-3 h-6 w-6" />
                 Falar no WhatsApp
                 <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
