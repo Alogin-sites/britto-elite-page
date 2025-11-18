@@ -1,43 +1,32 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { Button } from "@/components/ui/button";
+import portfolioDj from "@/assets/portfolio-dj.png";
+import portfolioAdvogado from "@/assets/portfolio-advogado.png";
+import portfolioPetshop from "@/assets/portfolio-petshop.png";
 
 const projects = [
   {
     id: 1,
-    title: "Site Corporativo Premium",
-    category: "Website",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format",
+    title: "DJ Luna",
+    category: "Landing Page",
+    image: portfolioDj,
+    demoUrl: "#",
   },
   {
     id: 2,
-    title: "Landing Page Conversion",
-    category: "Landing Page",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format",
+    title: "Dr. Advocacia",
+    category: "Website",
+    image: portfolioAdvogado,
+    demoUrl: "#",
   },
   {
     id: 3,
-    title: "E-commerce Minimalista",
-    category: "E-commerce",
-    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 4,
-    title: "Portfolio Designer",
-    category: "Portfolio",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 5,
-    title: "Site Institucional",
+    title: "Pets",
     category: "Website",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 6,
-    title: "Landing Page SaaS",
-    category: "Landing Page",
-    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&auto=format",
+    image: portfolioPetshop,
+    demoUrl: "#",
   },
 ];
 
@@ -69,15 +58,28 @@ const Portfolio = () => {
                 onClick={() => setSelectedProject(project)}
                 style={{ transitionDelay: isVisible ? `${index * 100 + 300}ms` : '0ms' }}
               >
-                <div className="relative overflow-hidden border border-primary/20 aspect-[4/3] hover:border-primary transition-colors duration-500">
+                <div className="relative overflow-hidden border border-primary/20 aspect-[16/9] hover:border-primary transition-colors duration-500">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center">
-                    <div className="text-sm text-muted-foreground mb-2">{project.category}</div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
+                  <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center gap-4">
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">{project.category}</div>
+                      <h3 className="text-2xl font-bold">{project.title}</h3>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      className="gap-2"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.demoUrl, '_blank');
+                      }}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Demo
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -105,11 +107,21 @@ const Portfolio = () => {
             <img
               src={selectedProject.image}
               alt={selectedProject.title}
-              className="w-full aspect-video object-cover grayscale mb-6"
+              className="w-full aspect-video object-cover mb-6"
             />
-            <div className="space-y-2">
-              <div className="text-sm text-muted-foreground">{selectedProject.category}</div>
-              <h3 className="text-3xl font-bold">{selectedProject.title}</h3>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="text-sm text-muted-foreground">{selectedProject.category}</div>
+                <h3 className="text-3xl font-bold">{selectedProject.title}</h3>
+              </div>
+              <Button 
+                variant="default" 
+                className="gap-2"
+                onClick={() => window.open(selectedProject.demoUrl, '_blank')}
+              >
+                <ExternalLink className="w-4 h-4" />
+                Ver Demo
+              </Button>
             </div>
           </div>
         </div>
