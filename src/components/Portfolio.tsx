@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Button } from "@/components/ui/button";
 import PortfolioBackground3D from "./PortfolioBackground3D";
+import useEmblaCarousel from "embla-carousel-react";
 import portfolioDj from "@/assets/portfolio-dj.png";
 import portfolioAdvogado from "@/assets/portfolio-advogado.png";
 import portfolioPetshop from "@/assets/portfolio-petshop.png";
@@ -45,6 +46,14 @@ const Portfolio = () => {
     (typeof projects)[0] | null
   >(null);
   const { ref, isVisible } = useScrollAnimation();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: "center",
+    slidesToScroll: 1 
+  });
+
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
 
   return (
     <section
@@ -104,65 +113,83 @@ const Portfolio = () => {
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={project.id}
-                className={`group cursor-pointer transition-all duration-700 ${
-                  isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                }`}
-                onClick={() => setSelectedProject(project)}
-                style={{
-                  transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
-                }}
-              >
-                <div className="relative border border-primary/20 min-h-[500px] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center p-4 overflow-hidden">
-                  {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    className="max-w-full max-h-full w-auto h-auto object-contain object-center group-hover:scale-105 transition-all duration-700"
+          {/* Projects Carousel */}
+          <div className="relative">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex gap-8">
+                {projects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className={`group cursor-pointer transition-all duration-700 flex-[0_0_85%] md:flex-[0_0_60%] lg:flex-[0_0_40%] ${
+                      isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                    }`}
+                    onClick={() => setSelectedProject(project)}
                     style={{
-                      imageRendering: "-webkit-optimize-contrast",
-                      WebkitBackfaceVisibility: "hidden",
-                      backfaceVisibility: "hidden",
-                      transform: "translateZ(0)",
-                      willChange: "transform",
+                      transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
                     }}
-                  />
+                  >
+                    <div className="relative border border-primary/20 min-h-[500px] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center p-4 overflow-hidden">
+                      {/* Corner accents */}
+                      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center gap-4">
-                    <div className="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <div className="inline-block px-3 py-1 border border-primary/30 text-xs tracking-wider">
-                        {project.category.toUpperCase()}
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                        className="max-w-full max-h-full w-auto h-auto object-contain object-center group-hover:scale-105 transition-all duration-700"
+                        style={{
+                          imageRendering: "-webkit-optimize-contrast",
+                          WebkitBackfaceVisibility: "hidden",
+                          backfaceVisibility: "hidden",
+                          transform: "translateZ(0)",
+                          willChange: "transform",
+                        }}
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center gap-4">
+                        <div className="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          <div className="inline-block px-3 py-1 border border-primary/30 text-xs tracking-wider">
+                            {project.category.toUpperCase()}
+                          </div>
+                          <h3 className="text-2xl font-bold">{project.title}</h3>
+                          <div className="w-12 h-[1px] bg-primary mx-auto" />
+                        </div>
+                        <Button
+                          variant="outline"
+                          className="gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 border-primary/50 hover:bg-primary hover:text-primary-foreground"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(project.demoUrl, "_blank");
+                          }}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Ver Demo
+                        </Button>
                       </div>
-                      <h3 className="text-2xl font-bold">{project.title}</h3>
-                      <div className="w-12 h-[1px] bg-primary mx-auto" />
                     </div>
-                    <Button
-                      variant="outline"
-                      className="gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 border-primary/50 hover:bg-primary hover:text-primary-foreground"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.demoUrl, "_blank");
-                      }}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Ver Demo
-                    </Button>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={scrollPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-3 border border-primary/20 bg-background/80 backdrop-blur-sm hover:bg-primary/10 hover:border-primary transition-all duration-300 z-10"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-3 border border-primary/20 bg-background/80 backdrop-blur-sm hover:bg-primary/10 hover:border-primary transition-all duration-300 z-10"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
