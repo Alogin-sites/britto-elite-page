@@ -7,6 +7,7 @@ import PortfolioBackground3D from "./PortfolioBackground3D";
 import portfolioDj from "@/assets/portfolio-dj.png";
 import portfolioAdvogado from "@/assets/portfolio-advogado.png";
 import portfolioPetshop from "@/assets/portfolio-petshop.png";
+import portfolioPousada from "@/assets/portfolio-pousada.png";
 
 const projects = [
   {
@@ -14,21 +15,28 @@ const projects = [
     title: "DJ Luna",
     category: "Landing Page",
     image: portfolioDj,
-    demoUrl: "#",
+    demoUrl: "https://dja.devbritto.com.br/",
   },
   {
     id: 2,
     title: "Dr. Advocacia",
     category: "Website",
     image: portfolioAdvogado,
-    demoUrl: "#",
+    demoUrl: "https://advogado.devbritto.com.br/",
   },
   {
     id: 3,
     title: "Pets",
     category: "Website",
     image: portfolioPetshop,
-    demoUrl: "#",
+    demoUrl: "https://petshop.devbritto.com.br/",
+  },
+  {
+    id: 4,
+    title: "Pousada Serenidade",
+    category: "Website",
+    image: portfolioPousada,
+    demoUrl: "https://pousada.devbritto.com.br/",
   },
 ];
 
