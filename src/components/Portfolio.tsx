@@ -5,6 +5,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Button } from "@/components/ui/button";
 import PortfolioBackground3D from "./PortfolioBackground3D";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import portfolioDj from "@/assets/portfolio-dj.png";
 import portfolioAdvogado from "@/assets/portfolio-advogado.png";
 import portfolioPetshop from "@/assets/portfolio-petshop.png";
@@ -66,7 +67,14 @@ const Portfolio = () => {
     loop: true, 
     align: "center",
     slidesToScroll: 1 
-  });
+  }, [
+    Autoplay({ 
+      delay: 5000, 
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      stopOnFocusIn: false
+    })
+  ]);
 
   const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
@@ -136,7 +144,7 @@ const Portfolio = () => {
                 {projects.map((project, index) => (
                   <div
                     key={project.id}
-                    className={`group cursor-pointer transition-all duration-700 flex-[0_0_85%] md:flex-[0_0_60%] lg:flex-[0_0_40%] ${
+                    className={`group cursor-pointer transition-all duration-700 flex-[0_0_100%] md:flex-[0_0_90%] lg:flex-[0_0_80%] ${
                       isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
                     }`}
                     onClick={() => setSelectedProject(project)}
@@ -144,7 +152,7 @@ const Portfolio = () => {
                       transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
                     }}
                   >
-                    <div className="relative border border-primary/20 min-h-[500px] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center p-4 overflow-hidden">
+                    <div className="relative border border-primary/20 min-h-[600px] md:min-h-[700px] bg-background hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center p-6 md:p-8 overflow-hidden">
                       {/* Corner accents */}
                       <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
