@@ -10,6 +10,7 @@ import portfolioAdvogado from "@/assets/portfolio-advogado.png";
 import portfolioPetshop from "@/assets/portfolio-petshop.png";
 import portfolioPousada from "@/assets/portfolio-pousada.png";
 import portfolioPsicologia from "@/assets/portfolio-psicologia.png";
+import portfolioAcademia from "@/assets/portfolio-academia.png";
 
 const projects = [
   {
@@ -46,6 +47,13 @@ const projects = [
     category: "Website",
     image: portfolioPsicologia,
     demoUrl: "https://psicologia.devbritto.com.br/",
+  },
+  {
+    id: 6,
+    title: "FitZone",
+    category: "Website",
+    image: portfolioAcademia,
+    demoUrl: "https://academia.devbritto.com.br/",
   },
 ];
 
